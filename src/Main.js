@@ -24,7 +24,7 @@ import DialPhoneParent from './DialPhoneParent';
 import ModalComp from './Modal';
 import FetchComp from './FetchComp';
 import PickerCompParent from './PickerCompParent';
-import PushyComp from './PushyComp';
+// import PushyComp from './PushyComp';
 import NetUtil from './NetUtil';
 
 import _updateConfig from '../package.json';
@@ -59,21 +59,21 @@ export default class Main extends React.Component {
 
   componentWillMount() {
     let _this = this;
-    let url = 'http://jieyan.xyitech.com/static/metadata.android.json';
-    NetUtil.postJson(url, (responseText)=> {
-      let curdata = JSON.parse(responseText);
-      // let curdata = responseText;
-      let localVesion = _updateConfig.version;
-      console.log('返回的JSON数据是  ', curdata, curdata.version, localVesion);
-      if (curdata.version != localVesion) {
-        // _this.setState({
-        //   isLoadModalVisible: false
-        // });
-        _this._openBrowserLink();
-      } else {
-        ToastAndroid.show('已是最新版本', ToastAndroid.SHORT);
-      }
-    });
+    // let url = 'http://jieyan.xyitech.com/static/metadata.android.json';
+    // NetUtil.postJson(url, (responseText)=> {
+    //   let curdata = JSON.parse(responseText);
+    //   // let curdata = responseText;
+    //   let localVesion = _updateConfig.version;
+    //   console.log('返回的JSON数据是  ', curdata, curdata.version, localVesion);
+    //   if (curdata.version != localVesion) {
+    //     // _this.setState({
+    //     //   isLoadModalVisible: false
+    //     // });
+    //     _this._openBrowserLink();
+    //   } else {
+    //     ToastAndroid.show('已是最新版本', ToastAndroid.SHORT);
+    //   }
+    // });
   }
 
   updateMenuState(isOpen) {
@@ -171,9 +171,9 @@ export default class Main extends React.Component {
         <Menu title='Picker下拉框' pageName="PickerCompParent" imageSource={menu_about} _leftMenuPress={(pageName)=> {
           this._openLeftMenuPage(pageName)
         }}/>
-        <Menu title='Pushy更新' pageName="PushyComp" imageSource={menu_about} _leftMenuPress={(pageName)=> {
-          this._openLeftMenuPage(pageName)
-        }}/>
+        {/*<Menu title='Pushy更新' pageName="PushyComp" imageSource={menu_about} _leftMenuPress={(pageName)=> {*/}
+        {/*this._openLeftMenuPage(pageName)*/}
+        {/*}}/>*/}
 
       </View>
     );

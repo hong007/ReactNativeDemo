@@ -25,7 +25,7 @@ import {
   markSuccess,
 } from 'react-native-update';
 import _updateConfig from '../update.json';
-const {appKey} = _updateConfig['android']['appKey'];
+const {appKey} = _updateConfig[Platform.OS];
 export default class PushyComp extends React.Component {
   componentWillMount() {
     if (isFirstTime) {
