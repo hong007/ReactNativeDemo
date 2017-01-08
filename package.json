@@ -9,9 +9,8 @@
   "dependencies": {
     "react": "15.4.1",
     "react-native": "0.40.0",
-    "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
-    "react-native-side-menu": "^0.20.1",
-    "react-native-update": "^4.0.0"
+    "react-native-barcodescanner": "^3.1.1",
+    "react-native-side-menu": "^0.20.1"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",
