@@ -13,6 +13,7 @@ import{
   DeviceEventEmitter,
 } from 'react-native';
 import BarcodeScannerChild from './BarcodeScannerChild';
+import BarcodeScannerCamera from './BarcodeScannerCamera';
 export default class BarcodeScannerParent extends React.Component {
   constructor(props) {
     super(props);
@@ -27,6 +28,20 @@ export default class BarcodeScannerParent extends React.Component {
     DeviceEventEmitter.addListener("changeBarCode", (events)=> {
       _this.setState({scannerResult: events})
     });
+  }
+
+  _openScannerPage() {
+    if (Platform.OS === 'android') {
+      this.props.navigator.push({
+        name: 'BarcodeScannerChild',
+        component: BarcodeScannerChild
+      });
+    } else {
+      this.props.navigator.push({
+        name: 'BarcodeScannerCamera',
+        component: BarcodeScannerCamera
+      });
+    }
   }
 
   render() {
@@ -61,8 +76,8 @@ export default class BarcodeScannerParent extends React.Component {
           <Text style={{flex: 1, textAlign: 'center', color: '#313131', fontSize: 18,}}>扫码实例</Text>
         </View>
         <View >
-          <TextInput style={{height:44,}}
-                    placeholder="扫码或输入二维码"
+          <TextInput style={{height: 44,}}
+                     placeholder="扫码或输入二维码"
                      value={this.state.scannerResult}
                      onChangeText={
                        (scannerResult)=> {
@@ -79,10 +94,7 @@ export default class BarcodeScannerParent extends React.Component {
                  source={require('../img/scanner.png')}><Text
             style={{backgroundColor: 'transparent', height: 44,}}
             onPress={()=> {
-              this.props.navigator.push({
-                name: 'BarcodeScannerChild',
-                component: BarcodeScannerChild
-              });
+              this._openScannerPage()
             }}></Text></Image>
         </View>
       </View>
