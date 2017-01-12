@@ -13,6 +13,7 @@ import{
   DeviceEventEmitter,
 } from 'react-native';
 import BarcodeScannerChild from './BarcodeScannerChild';
+import BarcodeScannerChildCamera from './BarcodeScannerChildCamera';
 export default class BarcodeScannerParent extends React.Component {
   constructor(props) {
     super(props);
@@ -22,13 +23,27 @@ export default class BarcodeScannerParent extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     let _this = this;
     DeviceEventEmitter.addListener("changeBarCode", (events)=> {
       _this.setState({scannerResult: events})
     });
   }
-
+_openScannerChild(){
+  // if(Platform.OS==='android'){
+  //   console.log(' 打开二维码扫码页面 android')
+  //   this.props.navigator.push({
+  //     name: 'BarcodeScannerChild',
+  //     component: BarcodeScannerChild
+  //   });
+  // }else{
+    console.log(' 打开二维码扫码页面 IOS')
+    this.props.navigator.push({
+      name: 'BarcodeScannerChildCamera',
+      component: BarcodeScannerChildCamera
+    });
+  // }
+}
   render() {
     console.disableYellowBox = true;
     console.warn('YellowBox is disabled.');
@@ -79,10 +94,7 @@ export default class BarcodeScannerParent extends React.Component {
                  source={require('../img/scanner.png')}><Text
             style={{backgroundColor: 'transparent', height: 44,}}
             onPress={()=> {
-              this.props.navigator.push({
-                name: 'BarcodeScannerChild',
-                component: BarcodeScannerChild
-              });
+              this._openScannerChild()
             }}></Text></Image>
         </View>
       </View>
