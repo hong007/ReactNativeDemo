@@ -15,6 +15,9 @@ import{
   TouchableOpacity,
   TouchableHighlight,
 } from 'react-native';
+
+import CommonStyle from './CommonStyle';
+
 import SideMenu from 'react-native-side-menu';
 
 import Ctrl from './Ctrl';
@@ -24,6 +27,7 @@ import DialPhoneParent from './DialPhoneParent';
 import ModalComp from './Modal';
 import FetchComp from './FetchComp';
 import PickerCompParent from './PickerCompParent';
+import ToastComponent from './ToastComponent';
 // import PushyComp from './PushyComp';
 import NetUtil from './NetUtil';
 
@@ -128,6 +132,11 @@ export default class Main extends React.Component {
         name: "PushyComp",
         component: PushyComp,
       });
+    } else if (curPage == "ToastComponent") {
+      this.props.navigator.push({
+        name: "ToastComponent",
+        component: ToastComponent,
+      });
     } else if (curPage == "QuitLogin") {
       AsyncStorage.setItem("LOGIN_USERNAME", '');
       AsyncStorage.setItem("LOGIN_USERPWD", '');
@@ -169,6 +178,9 @@ export default class Main extends React.Component {
           this._openLeftMenuPage(pageName)
         }}/>
         <Menu title='Picker下拉框' pageName="PickerCompParent" imageSource={menu_about} _leftMenuPress={(pageName)=> {
+          this._openLeftMenuPage(pageName)
+        }}/>
+        <Menu title='Toast' pageName="ToastComponent" imageSource={menu_about} _leftMenuPress={(pageName)=> {
           this._openLeftMenuPage(pageName)
         }}/>
         {/*<Menu title='Pushy更新' pageName="PushyComp" imageSource={menu_about} _leftMenuPress={(pageName)=> {*/}

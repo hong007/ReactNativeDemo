@@ -109,16 +109,7 @@ export default class BarcodeScannerParent extends React.Component {
                  source={require('../img/scanner.png')}><Text
             style={{backgroundColor: 'transparent', height: 44,}}
             onPress={()=> {
-              <
-              <
-              <
-              <
-              <
-              << HEAD
-                this._openScannerChild()
-              =======
               this._openScannerPage()
-              >>>>>>> 73a11679ce50f0219a02c5984911916ad88d83ba
               }}></Text></Image>
         </View>
       </View>
