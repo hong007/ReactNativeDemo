@@ -22,12 +22,13 @@ import SideMenu from 'react-native-side-menu';
 
 import Ctrl from './Ctrl';
 import Menu from './Menu';
-import BarcodeScannerParent from './BarcodeScannerParent';
 import DialPhoneParent from './DialPhoneParent';
 import ModalComp from './Modal';
 import FetchComp from './FetchComp';
 import PickerCompParent from './PickerCompParent';
 import ToastComponent from './ToastComponent';
+import BarcodeScannerParent from './BarcodeScannerParent';
+
 // import PushyComp from './PushyComp';
 import NetUtil from './NetUtil';
 

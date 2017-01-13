@@ -5,23 +5,22 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
-Text,
+  Text,
   Platform,
   DeviceEventEmitter,
 } from 'react-native';
 import Camera from 'react-native-camera';
-import Main from './Main';
+// import Main from './Main';
 import BarcodeScannerParent from './BarcodeScannerParent';
 
-
-export default class Example extends React.Component {
+export default class BarcodeScannerChildCamera extends React.Component {
   constructor(props) {
     super(props);
 
     this.camera = null;
 
     this.state = {
-      isBarCodeScann:false,
+      isBarCodeScann: false,
       camera: {
         aspect: Camera.constants.Aspect.fill,
         captureTarget: Camera.constants.CaptureTarget.cameraRoll,
@@ -127,10 +126,10 @@ export default class Example extends React.Component {
     return icon;
   }
 
-  onBarCodeRead(e) {
+  _onBarCodeRead(data) {
     let _this = this;
-    if (e.data != '') {
-      console.log('这下你不嘚瑟了吧', e.data);
+    if (data.data != '') {
+      console.log('这下你不嘚瑟了吧', data.data);
       // 只扫一次
       if (this.state.isBarCodeScann) {
         return true;
@@ -138,8 +137,8 @@ export default class Example extends React.Component {
         this.setState({
           isBarCodeScann: true,
         });
-        // alert('扫码结果是',e.data)
-        DeviceEventEmitter.emit("changeBarCode", e.data);
+        // alert('扫码结果是',data.data)
+        DeviceEventEmitter.emit("changeBarCode", data.data);
         console.log('有没有执行');
         this.props.navigator.pop();
       }
@@ -189,7 +188,7 @@ export default class Example extends React.Component {
             captureTarget={this.state.camera.captureTarget}
             type={this.state.camera.type}
             flashMode={this.state.camera.flashMode}
-            onBarCodeRead={this.onBarCodeRead}
+            onBarCodeRead={(data)=>{this._onBarCodeRead(data)}}
             defaultTouchToFocus
             mirrorImage={false}
           />

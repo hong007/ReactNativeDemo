@@ -12,14 +12,16 @@ import{
   TouchableOpacity,
   DeviceEventEmitter,
 } from 'react-native';
-import BarcodeScannerChild from './BarcodeScannerChild';
-import BarcodeScannerChildCamera from './BarcodeScannerChildCamera' ;
+// import BarcodeScannerChild from './BarcodeScannerChild';
+import BarcodeScannerChildCamera from './BarcodeScannerChildCamera';
 export default class BarcodeScannerParent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       scannerResult: '',
-      modalVisible: false
+      modalVisible: false,
+
+      scannerResult2:'',
     }
   }
 
@@ -28,35 +30,24 @@ export default class BarcodeScannerParent extends React.Component {
     DeviceEventEmitter.addListener("changeBarCode", (events)=> {
       _this.setState({scannerResult: events})
     });
+
+    // DeviceEventEmitter.addListener("changeBarCode2", (events)=> {
+    //   _this.setState({scannerResult2: events})
+    // });
   }
 
-// _openScannerChild(){
-//   // if(Platform.OS==='android'){
-//   //   console.log(' 打开二维码扫码页面 android')
-//   //   this.props.navigator.push({
-//   //     name: 'BarcodeScannerChild',
-//   //     component: BarcodeScannerChild
-//   //   });
-//   // }else{
-//     console.log(' 打开二维码扫码页面 IOS')
-//     this.props.navigator.push({
-//       name: 'BarcodeScannerChildCamera',
-//       component: BarcodeScannerChildCamera
-//     });
-//   // }
-// }
   _openScannerPage() {
-    if (Platform.OS === 'android') {
+    // if (Platform.OS === 'android') {
+    //   this.props.navigator.push({
+    //     name: 'BarcodeScannerChild',
+    //     component: BarcodeScannerChild
+    //   });
+    // } else {
       this.props.navigator.push({
-        name: 'BarcodeScannerChild',
-        component: BarcodeScannerChild
+        name: 'BarcodeScannerChildCamera',
+        component: BarcodeScannerChildCamera
       });
-    } else {
-      this.props.navigator.push({
-        name: 'BarcodeScannerCamera',
-        component: BarcodeScannerCamera
-      });
-    }
+    // }
   }
 
   render() {
@@ -90,7 +81,7 @@ export default class BarcodeScannerParent extends React.Component {
           </TouchableOpacity>
           <Text style={{flex: 1, textAlign: 'center', color: '#313131', fontSize: 18,}}>扫码实例</Text>
         </View>
-        <View >
+        <View>
           <TextInput style={{height: 44,}}
                      placeholder="扫码或输入二维码"
                      value={this.state.scannerResult}

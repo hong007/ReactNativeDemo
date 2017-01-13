@@ -13,6 +13,7 @@ import{
 } from 'react-native';
 import {toastShort} from '../common/ToastUtil';
 import {toastLong} from '../common/ToastUtil';
+
 export default class ToastComponent extends React.Component {
   constructor(props) {
     super(props);
