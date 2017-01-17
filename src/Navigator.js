@@ -17,7 +17,8 @@ import {
   TouchableOpacity,
   TouchableHighlight,
 } from 'react-native';
-import Main from './Main';
+// import Main from './Main';
+import GesturePassword from './GesturePassword';
 class navigator extends React.Component {
   constructor(props) {
     super(props);
@@ -35,8 +36,8 @@ class navigator extends React.Component {
   // }
 
   render() {
-    let defaultName = 'Main';
-    let defaultComponent = Main;
+    let defaultName = 'GesturePassword';
+    let defaultComponent = GesturePassword;
     return (
       <Navigator
         initialRoute={{name: defaultName, component: defaultComponent}}

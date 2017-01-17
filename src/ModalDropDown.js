@@ -1,5 +1,5 @@
 /**
- * Created by hongty on 2016/12/14.
+ * Created by Skipper on 2017/1/17.
  */
 import React, {Component} from 'react';
 import{
@@ -12,8 +12,8 @@ import{
   TouchableOpacity,
   DeviceEventEmitter,
 } from 'react-native';
-import DialPhoneChild from './DialPhoneChild';
-export default class BarcodeScannerParent extends React.Component {
+import ModalDropdown from 'react-native-modal-dropdown';
+export default class modalDropDwonCom extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
@@ -52,8 +52,7 @@ export default class BarcodeScannerParent extends React.Component {
           <Text style={{flex: 1, textAlign: 'center', color: '#313131', fontSize: 18,}}>ReactNative拨打电话功能</Text>
         </View>
         <View >
-          <DialPhoneChild url={'tel:' + this.state.testPhone}
-                     title={this.state.testPhone}/>
+
         </View>
       </View>
     )
