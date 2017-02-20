@@ -14,6 +14,7 @@ import{
 } from 'react-native';
 // import BarcodeScannerChild from './BarcodeScannerChild';
 import BarcodeScannerChildCamera from './BarcodeScannerChildCamera';
+import QRCodeScreen from './QRCodeScreen';
 export default class BarcodeScannerParent extends React.Component {
   constructor(props) {
     super(props);

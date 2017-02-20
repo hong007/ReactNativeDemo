@@ -188,10 +188,16 @@ export default class BarcodeScannerChildCamera extends React.Component {
             captureTarget={this.state.camera.captureTarget}
             type={this.state.camera.type}
             flashMode={this.state.camera.flashMode}
-            onBarCodeRead={(data)=>{this._onBarCodeRead(data)}}
+            onBarCodeRead={(data)=> {
+              this._onBarCodeRead(data)
+            }}
             defaultTouchToFocus
             mirrorImage={false}
-          />
+          >
+            <View style={styles.rectangleContainer}>
+              <View style={styles.rectangle}/>
+            </View>
+          </Camera>
           <View style={[styles.overlay, styles.topOverlay]}>
             <TouchableOpacity
               style={styles.typeButton}
@@ -297,5 +303,19 @@ const styles = StyleSheet.create({
   },
   buttonsSpace: {
     width: 10,
+  },
+  rectangleContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+  },
+
+  rectangle: {
+    height: 250,
+    width: 250,
+    borderWidth: 2,
+    borderColor: '#00FF00',
+    backgroundColor: 'transparent',
   },
 });
