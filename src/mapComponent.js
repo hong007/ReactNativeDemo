@@ -23,20 +23,27 @@ export default class mapComponent extends Component {
     super(props);
     this.camera = null;
     this.state = {
-      region: {
-        latitude: 30.78825,
-        longitude: 120.4324,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      },
+      // region: {
+      //   latitude: 30.78825,
+      //   longitude: 120.4324,
+      //   latitudeDelta: 0.0922,
+      //   longitudeDelta: 0.0421,
+      // },
     };
   }
-  onRegionChange(region) {
-    this.setState({ region });
-  }
+
+  // onRegionChange(region) {
+  //   let regions=region;
+  //   this.setState({
+  //     region: regions,
+  //   });
+  // }
+
   render() {
     console.disableYellowBox = true;
     console.warn('YellowBox is disabled.');
+    const { region } = this.props;
+    console.log(region);
     return (
       <View style={{flex: 1, backgroundColor: '#f7f7f7',}}>
         <View style={{
@@ -67,8 +74,12 @@ export default class mapComponent extends Component {
         </View>
         <MapView
           style={styles.mapcontainer}
-          region={this.state.region}
-          onRegionChange={this.onRegionChange}
+          region={{
+            latitude: 30.78825,
+            longitude: 120.4324,
+            latitudeDelta: 0.015,
+            longitudeDelta: 0.0121,
+          }}
         />
       </View>
     );
@@ -80,8 +91,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  mapcontainer:{
-    flex:1,
+  mapcontainer: {
+    flex: 1,
   }
 });
 

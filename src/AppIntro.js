@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
 export default class Example extends Component {
 
   onSkipBtnHandle = (index) => {
-    Alert.alert('Skip','欢迎使用来到安静的猫的APP');
+    // Alert.alert('Skip','欢迎使用来到安静的猫的APP');
     this.props.navigator.push({
       name: "Main",
       component: Main,
@@ -72,7 +72,7 @@ export default class Example extends Component {
     console.log(index);
   }
   doneBtnHandle = () => {
-    Alert.alert('Done','欢迎使用来到安静的猫的APP');
+    // Alert.alert('Done','欢迎使用来到安静的猫的APP');
     this.props.navigator.push({
       name: "Main",
       component: Main,

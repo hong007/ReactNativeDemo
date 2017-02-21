@@ -131,10 +131,10 @@ export default class Main extends React.Component {
         component: PickerCompParent,
       });
     } else if (curPage == "PushyComp") {
-      this.props.navigator.push({
-        name: "PushyComp",
-        component: PushyComp,
-      });
+      // this.props.navigator.push({
+      //   name: "PushyComp",
+      //   component: PushyComp,
+      // });
     } else if (curPage == "ToastComponent") {
       this.props.navigator.push({
         name: "ToastComponent",
