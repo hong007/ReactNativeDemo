@@ -30,6 +30,7 @@ import ToastComponent from './ToastComponent';
 import BarcodeScannerParent from './BarcodeScannerParent';
 
 import mapComponent from './mapComponent';
+import bMaps from './bMaps';
 
 // import PushyComp from './PushyComp';
 import NetUtil from './NetUtil';
@@ -140,10 +141,15 @@ export default class Main extends React.Component {
         name: "ToastComponent",
         component: ToastComponent,
       });
-    }else if (curPage == "mapComponent") {
+    } else if (curPage == "mapComponent") {
       this.props.navigator.push({
         name: "mapComponent",
         component: mapComponent,
+      });
+    } else if (curPage == "bMaps") {
+      this.props.navigator.push({
+        name: "bMaps",
+        component: bMaps,
       });
     } else if (curPage == "QuitLogin") {
       AsyncStorage.setItem("LOGIN_USERNAME", '');
@@ -191,7 +197,10 @@ export default class Main extends React.Component {
         <Menu title='Toast' pageName="ToastComponent" imageSource={menu_about} _leftMenuPress={(pageName)=> {
           this._openLeftMenuPage(pageName)
         }}/>
-        <Menu title='maps' pageName="mapComponent" imageSource={menu_about} _leftMenuPress={(pageName)=> {
+        <Menu title='谷歌地图' pageName="mapComponent" imageSource={menu_about} _leftMenuPress={(pageName)=> {
+          this._openLeftMenuPage(pageName)
+        }}/>
+        <Menu title='百度地图' pageName="bMaps" imageSource={menu_about} _leftMenuPress={(pageName)=> {
           this._openLeftMenuPage(pageName)
         }}/>
         {/*<Menu title='Pushy更新' pageName="PushyComp" imageSource={menu_about} _leftMenuPress={(pageName)=> {*/}

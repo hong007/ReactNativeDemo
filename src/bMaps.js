@@ -1,7 +1,7 @@
 /**
  * Created by Skipper on 2017/2/20.
  */
-import React, {Component} from 'react';
+import React, {Component,PropTypes} from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -17,6 +17,30 @@ import {
 import Main from './Main';
 import {MapView, MapTypes, MapModule, Geolocation} from 'react-native-baidu-map';
 
+class Buttton extends Component {
+  static propTypes = {
+    label: PropTypes.string,
+    onPress: PropTypes.func
+  };
+
+  static defaultProps = {
+    label: 'Buttton',
+    onPress() {
+
+    }
+  };
+
+  render() {
+    return (
+      <TouchableHighlight
+        style={styles.btn}
+        onPress={this.props.onPress}>
+        <Text style={{color: 'white'}}>{this.props.label}</Text>
+      </TouchableHighlight>
+    );
+  }
+}
+;
 export default class bMaps extends Component {
   constructor(props) {
     super(props);
@@ -89,6 +113,72 @@ export default class bMaps extends Component {
           }}
         >
         </MapView>
+
+        <View style={styles.row}>
+          <Buttton label="Normal" onPress={() => {
+            this.setState({
+              mapType: MapTypes.NORMAL
+            });
+          }}/>
+          <Buttton label="Satellite" onPress={() => {
+            this.setState({
+              mapType: MapTypes.SATELLITE
+            });
+          }}/>
+
+          <Buttton label="Locate" onPress={() => {
+            Geolocation.getCurrentPosition()
+              .then(data => {
+                this.setState({
+                  zoom: 15,
+                  marker: {
+                    latitude: data.latitude,
+                    longitude: data.longitude,
+                    title: 'Your location'
+                  },
+                  center: {
+                    latitude: data.latitude,
+                    longitude: data.longitude
+                  }
+                });
+              })
+              .catch(e => {
+                console.warn(e, 'error');
+              })
+          }}/>
+        </View>
+
+        <View style={styles.row}>
+          <Buttton label="Zoom+" onPress={() => {
+            this.setState({
+              zoom: this.state.zoom + 1
+            });
+          }}/>
+          <Buttton label="Zoom-" onPress={() => {
+            if (this.state.zoom > 0) {
+              this.setState({
+                zoom: this.state.zoom - 1
+              });
+            }
+
+          }}/>
+        </View>
+
+        <View style={styles.row}>
+          <Buttton label="Traffic" onPress={() => {
+            this.setState({
+              trafficEnabled: !this.state.trafficEnabled
+            });
+          }}/>
+
+          <Buttton label="Baidu HeatMap" onPress={() => {
+            this.setState({
+              baiduHeatMapEnabled: !this.state.baiduHeatMapEnabled
+            });
+          }}/>
+
+
+        </View>
       </View>
     );
   }
@@ -96,11 +186,33 @@ export default class bMaps extends Component {
 
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
+  // container: {
+  //   flex: 1
+  // },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
   },
-  mapcontainer: {
+  btn: {
+    height: 24,
+    borderRadius: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#cccccc',
+    paddingLeft: 8,
+    paddingRight: 8,
+    margin: 4
+  },
+  container: {
     flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  map: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height - 200,
+    marginBottom: 16
   }
 });
 
