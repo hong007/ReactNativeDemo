@@ -23,12 +23,10 @@
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
       android:theme="@style/AppTheme">
+      <meta-data android:name="com.baidu.lbsapi.API_KEY" android:value="RgACryIMjiA7j1wc76XatVTkKCKK0OuC"/>
       <meta-data
         android:name="com.google.android.geo.API_KEY"
         android:value="AIzaSyCHTNcxhHEVU5KKdCeU9xxrtOqY26yaWwA"/>
-      <meta-data
-        android:name="com.baidu.lbsapi.API_KEY"
-        android:value="RgACryIMjiA7j1wc76XatVTkKCKK0OuC"/>
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"

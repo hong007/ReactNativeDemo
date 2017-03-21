@@ -29,8 +29,10 @@ import PickerCompParent from './PickerCompParent';
 import ToastComponent from './ToastComponent';
 import BarcodeScannerParent from './BarcodeScannerParent';
 
-import mapComponent from './mapComponent';
-import bMaps from './bMaps';
+import Spinkit from './Spinkit';
+import Gmaps from './MapsCom';
+import BaiduMaps from './BaidumapsComp';
+
 
 // import PushyComp from './PushyComp';
 import NetUtil from './NetUtil';
@@ -141,15 +143,20 @@ export default class Main extends React.Component {
         name: "ToastComponent",
         component: ToastComponent,
       });
-    } else if (curPage == "mapComponent") {
+    } else if (curPage == "Spinkit") {
       this.props.navigator.push({
-        name: "mapComponent",
-        component: mapComponent,
+        name: "Spinkit",
+        component: Spinkit,
       });
-    } else if (curPage == "bMaps") {
+    }else if (curPage == "Gmaps") {
       this.props.navigator.push({
-        name: "bMaps",
-        component: bMaps,
+        name: "Gmaps",
+        component: Gmaps,
+      });
+    }else if (curPage == "BaiduMaps") {
+      this.props.navigator.push({
+        name: "BaiduMaps",
+        component: BaiduMaps,
       });
     } else if (curPage == "QuitLogin") {
       AsyncStorage.setItem("LOGIN_USERNAME", '');
@@ -179,6 +186,12 @@ export default class Main extends React.Component {
       <View style={{flex: 1, backgroundColor: '#1b1b1b', paddingTop: 24,}}
             onPress={()=>this.closeDrawer()}
       >
+        <Menu title='BaiduMaps' pageName="BaiduMaps" imageSource={menu_lay} _leftMenuPress={(pageName)=> {
+          this._openLeftMenuPage(pageName)
+        }}/>
+        <Menu title='Maps' pageName="Gmaps" imageSource={menu_lay} _leftMenuPress={(pageName)=> {
+          this._openLeftMenuPage(pageName)
+        }}/>
         <Menu title='扫码' pageName="BarcodeScannerParent" imageSource={menu_lay} _leftMenuPress={(pageName)=> {
           this._openLeftMenuPage(pageName)
         }}/>
@@ -186,6 +199,9 @@ export default class Main extends React.Component {
           this._openLeftMenuPage(pageName)
         }}/>
         <Menu title='模态框' pageName="ModalComp" imageSource={menu_about} _leftMenuPress={(pageName)=> {
+          this._openLeftMenuPage(pageName)
+        }}/>
+        <Menu title='加载动画' pageName="Spinkit" imageSource={menu_about} _leftMenuPress={(pageName)=> {
           this._openLeftMenuPage(pageName)
         }}/>
         <Menu title='网络请求' pageName="FetchComp" imageSource={menu_about} _leftMenuPress={(pageName)=> {
@@ -197,12 +213,7 @@ export default class Main extends React.Component {
         <Menu title='Toast' pageName="ToastComponent" imageSource={menu_about} _leftMenuPress={(pageName)=> {
           this._openLeftMenuPage(pageName)
         }}/>
-        <Menu title='谷歌地图' pageName="mapComponent" imageSource={menu_about} _leftMenuPress={(pageName)=> {
-          this._openLeftMenuPage(pageName)
-        }}/>
-        <Menu title='百度地图' pageName="bMaps" imageSource={menu_about} _leftMenuPress={(pageName)=> {
-          this._openLeftMenuPage(pageName)
-        }}/>
+
         {/*<Menu title='Pushy更新' pageName="PushyComp" imageSource={menu_about} _leftMenuPress={(pageName)=> {*/}
         {/*this._openLeftMenuPage(pageName)*/}
         {/*}}/>*/}
